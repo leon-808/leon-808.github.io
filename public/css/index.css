@@ -1,6 +1,7 @@
 body {
 	font-family: D2Coding, 'D2 coding', monospace;
     margin: 0;
+    touch-action: none;
 }
 
 nav {
@@ -23,7 +24,8 @@ nav > ul {
     font-size: 2rem;
 }
 
-.nav_li::after {
+.nav_li::after,
+.m_nav_li.current::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -41,32 +43,18 @@ nav > ul {
 }
 
 .nav_li:hover::after,
-.nav_li.clicked::after {
+.nav_li.clicked::after,
+.m_nav_li.current::after {
     transform: scaleX(1);
     transform-origin: bottom center;
 }
 
 m_nav {
     display: none;
-}
-
-.m_nav_li {
-    display: none;
-}
-
-.m_nav_li.current,
-.m_nav_li.prev,
-.m_nav_li.next {
-    display: block;
-}
-
-.m_nav_li.current {
-    font-weight: bold;
-}
-
-.m_nav_li.prev,
-.m_nav_li.next {
-    font-size: 0.8rem;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -87,12 +75,66 @@ m_nav {
     }
     m_nav {
         display: block;
+        width: 100%;
+        font-size: 0.9rem;
     }
     m_nav > ul {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        padding: 0;
     }
     m_nav > ul > *:nth-child(-n+3) {
         flex-basis: calc(100% / 3);
+    }
+
+    .m_nav_li {
+        display: none;
+        position: relative;
+        list-style: none;
+        width: calc(100% / 3);
+        text-align: center;
+    }
+
+    .m_nav_li.current,
+    .m_nav_li.prev,
+    .m_nav_li.next {
+        display: block;
+    }
+
+    .m_nav_li.current {
+        font-weight: bold;
+    }
+    
+    .m_nav_li.prev,
+    .m_nav_li.next {
+        font-size: 0.7rem;
+    }
+
+    .m_nav_li.prev {
+        text-align: left;
+    }
+
+    .m_nav_li.next {
+        text-align: right;
+    }
+
+    .arrow1 {
+        animation: boldAnimation 1.5s infinite 0.5s;
+    }
+    .arrow2 {
+        animation: boldAnimation 1.5s infinite 1s;
+    }
+    .arrow3 {
+        animation: boldAnimation 1.5s infinite 1.5s;
+    }
+    
+    @keyframes boldAnimation {
+        0%, 100% {
+            font-weight: normal;
+        }
+        50% {
+            font-weight: bold;
+            color: crimson;
+        }
     }
 }
