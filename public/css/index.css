@@ -1,0 +1,98 @@
+body {
+	font-family: D2Coding, 'D2 coding', monospace;
+    margin: 0;
+}
+
+nav {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: center;
+}
+
+.nav_li {
+    position: relative;
+    list-style: none;
+    padding-left: 0;
+    margin-right: 3rem;
+    font-size: 2rem;
+}
+
+.nav_li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: crimson;
+    bottom: -0.5rem;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: bottom center;
+    transition: transform 0.3s ease-in-out
+}
+
+.nav_li.clicked::after {
+    height: 4px;
+}
+
+.nav_li:hover::after,
+.nav_li.clicked::after {
+    transform: scaleX(1);
+    transform-origin: bottom center;
+}
+
+m_nav {
+    display: none;
+}
+
+.m_nav_li {
+    display: none;
+}
+
+.m_nav_li.current,
+.m_nav_li.prev,
+.m_nav_li.next {
+    display: block;
+}
+
+.m_nav_li.current {
+    font-weight: bold;
+}
+
+.m_nav_li.prev,
+.m_nav_li.next {
+    font-size: 0.8rem;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .nav_li {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .nav_li {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    nav {
+        display: none;
+    }
+    m_nav {
+        display: block;
+    }
+    m_nav > ul {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    m_nav > ul > *:nth-child(-n+3) {
+        flex-basis: calc(100% / 3);
+    }
+}
